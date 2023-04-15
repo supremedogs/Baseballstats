@@ -1,0 +1,26 @@
+import tweepy
+import random
+
+# Set up your Twitter API keys and access tokens
+consumer_key = "BH407mmLbdBUB2PQ5X0PTCKVM"
+consumer_secret = "5hu9cfwmXGZo6xG1kwLOBvdMrDv0HRSZsXdr9ARcZMT3MAOZWG"
+access_token = "3903202667-htCQ1gPTOeydoDLj6Mpj9neuQTrOdkteGbKoYaM
+"
+access_token_secret = "VMSrR4FPaa1QophIc0C1fD7xSRIPXqiADsqqu7QM22JQa"
+
+# Authenticate with the Twitter API
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+# Define a function to generate random MLB analytics
+def generate_stats():
+    teams = ["New York Yankees", "Boston Red Sox", "Los Angeles Dodgers", "Chicago Cubs", "Washington Nationals", "New York Mets", "Cleveland Guardians", "Tampa Bay Rays", "Baltimore Orioles", "Toronto Blue Jays", "Kansas City Royals", "Minnesota Twins", "Detroit Tigers", "Los Angeles Angels", "Houston Astros", "Seattle Mariners", "Texas Rangers", "Oakland Athletics", "Miami Marlins", "Atlanta Braves", "Philladelphia Phillies", "Pittsburgh Pirates", "Colorado Rockies", "St. Louis Cardinals", "San Fransisco Giants", "Cincinatti Reds", "Arizona Diamondbacks", "Milwaukee Brewers", "San Diego Padres",   ]
+    stats = ["home runs", "batting average", "on-base percentage", "earned run average", "Stolen Bases", "Hits" ]
+    team = random.choice(teams)
+    stat = random.choice(stats)
+    value = random.randint(0, 100)
+    return f"{team} had {value} {stat} in their last game."
+
+# Tweet out a random MLB analytics statistic
+api.update_status(generate_stats())
